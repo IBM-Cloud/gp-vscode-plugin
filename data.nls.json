@@ -1,0 +1,34 @@
+{
+    "messages": [
+		"Could not get bundle list",
+		"Getting resource bundle list",
+        "Select a bundle to delete",
+        "Bundle could not be deleted: ",
+        "Bundle deleted: ",
+        "Select a bundle to upload content to",
+        "Bundle not uploaded: ",
+        "Bundle uploaded: ",
+        "Bundle could not be parsed: ",
+        "Bundle name cannot contain spaces",
+        "Creating bundle: ",
+        "Bundle already exists: ",
+        "Bundle created: ",
+        "Enter the name of the bundle"
+	],
+	"keys": [
+		"noBundles",
+		"getList",
+        "selectDelete",
+        "notDeleted",
+        "deleted",
+        "bundleUpload",
+        "bundleUploadFail",
+        "bundleUploadSuccess",
+        "parseFailed",
+        "bundleRegEx",
+        "bundleCreate",
+        "bundleExists",
+        "bundleCreateSuccess",
+        "enterName"
+	]
+}

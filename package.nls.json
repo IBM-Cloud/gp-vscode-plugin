@@ -1,0 +1,13 @@
+
+{
+    "description": "Connect to the Globalization Pipeline service on Bluemix",
+    "create": "Globalization Pipeline - Create Bundle",
+    "update": "Globalization Pipeline - Upload Source Bundle",
+    "delete": "Globalization Pipeline - Delete Bundle",
+    "userid": "Service user id",
+    "password": "Service password",
+    "instanceid": "Service instance id",
+    "url": "Service url end point",
+    "source": "BCP 47 langauge code, e.g., en",
+    "target": "Array of BCP 47 list of target languages, e.g., ['es', 'fr']"
+}
