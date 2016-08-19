@@ -4,7 +4,7 @@
 var nls = require('vscode-nls');
 var path = require('path');
 var vscode_1 = require('vscode');
-var localize = nls.config()(path.join(__dirname, 'data'));
+var localize = nls.config({ locale: vscode_1.env.language })(path.join(__dirname, 'data'));
 // This method is called when your extension is activated. Activation is
 // controlled by the activation events defined in package.json.
 function activate(context) {
@@ -173,7 +173,7 @@ var GlobalizationPipeline = (function () {
             }
             else {
                 var bundleList = Object.keys(bundles);
-                vscode_1.window.setStatusBarMessage(localize(1, null), 2000);
+                vscode_1.window.setStatusBarMessage(localize(2, null), 2000);
                 vscode_1.window.showQuickPick(bundleList, {
                     placeHolder: localize(2, null)
                 }).then(function (bundleName) {
