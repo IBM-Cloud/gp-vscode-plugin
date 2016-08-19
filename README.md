@@ -26,7 +26,7 @@ This extension contributes the following settings:
 * `g11n.password`: The Globalization Piepeline service password
 * `g11n.instanceId`: The Globalization Pipeline service instanceId
 * `g11n.url`: The Globalization Pipeline service url end point
-* `g11n.sourceLanguage`: The source language of the content that you will upload to the service, e.g. *en*, must be a valid BCP 47 language code. By default this value is to *en*
+* `g11n.sourceLanguage`: The source language of the content that you will upload to the service, e.g. *en*, must be a valid BCP 47 language code. By default this value is set to *en*
 * `g11n.targetLanguages`: An array of target lanaguges that your bundle will be translated into, e.g., *['es', 'fr']*, must be valid BCP 47 lanaguge codes
 
 ## Usage
