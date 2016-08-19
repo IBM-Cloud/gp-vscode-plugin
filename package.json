@@ -5,6 +5,7 @@
     "icon": "images/logo.svg",
     "version": "0.0.1",
     "publisher": "IBM",
+    "license": "SEE LICENSE IN LICENSE.txt",
     "engines": {
         "vscode": "^1.0.0"
     },
