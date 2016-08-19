@@ -14,7 +14,7 @@ You can upload your content from the editor as well and the extension will autom
 
 ## Requirements
 
-You must first create and instance of the Globalization Pipeline service on Bluemix before you can use this extension to work with translation bundles.
+You must first create an instance of the Globalization Pipeline service on Bluemix before you can use this extension to work with translation bundles.
 
 ## Extension Settings
 
@@ -26,7 +26,7 @@ This extension contributes the following settings:
 * `g11n.password`: The Globalization Piepeline service password
 * `g11n.instanceId`: The Globalization Pipeline service instanceId
 * `g11n.url`: The Globalization Pipeline service url end point
-* `g11n.sourceLanguage`: The source language of the content that you will upload to the service, e.g. *en*, must be a valid BCP 47 language code. By Default this value is to *en*
+* `g11n.sourceLanguage`: The source language of the content that you will upload to the service, e.g. *en*, must be a valid BCP 47 language code. By default this value is to *en*
 * `g11n.targetLanguages`: An array of target lanaguges that your bundle will be translated into, e.g., *['es', 'fr']*, must be valid BCP 47 lanaguge codes
 
 ## Usage
