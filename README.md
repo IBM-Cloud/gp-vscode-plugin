@@ -1,65 +1,51 @@
-# wordcount README
+# Globalization Pipeline Extension README
 
-This is the README for your extension "wordcount". After writing up a brief description, we recommend including the following sections.
+This extension enables you to quickly create, upload, and delete translation bundles in the Globalization Pipeline service on IBM Bluemix.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+You can create a new bundle right from the editor without having to use the Globalization Pipeline service's dashboard
 
-For example if there is an image subfolder under your extension project workspace:
+![create bundle](images/create_bundle.png)
 
-\!\[feature X\]\(images/feature-x.png\)
+You can upload your content from the editor as well and the extension will automatically get all your available bundles.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+![upload bundle](images/upload_bundle.png) 
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+You must first create and instance of the Globalization Pipeline service on Bluemix before you can use this extension to work with translation bundles.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
+To use the extension copy over your VCAP credential settings for the Globalization Pipeline service and fill in the appropriate fields.
 
 This extension contributes the following settings:
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+* `g11n.userId`: The Globalization Pipeleine service userId
+* `g11n.password`: The Globalization Piepeline service password
+* `g11n.instanceId`: The Globalization Pipeline service instanceId
+* `g11n.url`: The Globalization Pipeline service url end point
+* `g11n.sourceLanguage`: The source language of the content that you will upload to the service, e.g. *en*, must be a valid BCP 47 language code. By Default this value is to *en*
+* `g11n.targetLanguages`: An array of target lanaguges that your bundle will be translated into, e.g., *['es', 'fr']*, must be valid BCP 47 lanaguge codes
 
-## Known Issues
+## Usage
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+In the command palette `(F1)` type Globalization Pipeline you should see the following commands:
+
++ Globalization Pipeline - Create Bundle
+- Globalization Pipeline - Upload Source Bundle
+* Globalization Pipeline - Delete Bundle
+
+When you use these commands a connection will automatically be made to the Globalization Pipeline service on IBM Bluemix to complete your requested action.
+When you upload your source bundle content the extension will automatically detect the file format and will perform any necessary transformation for you. 
+Currently only Java properties, JSON, and i18n AMD resource bundles are supported.
+
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+No additional release notes at this time.
 
-### 1.0.0
+### 0.0.1
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on OSX or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on OSX or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (OSX) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Initial release of Globalization Pipeleine extension
