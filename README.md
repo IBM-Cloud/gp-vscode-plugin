@@ -1,16 +1,27 @@
 # Globalization Pipeline Extension README
 
 This extension enables you to quickly create, upload, and delete translation bundles in the Globalization Pipeline service on IBM Bluemix.
+If you are unfamiliar with IBM Bluemix and the Globalization Pipeline service checkout these links:
+
++ [Bluemix](https://bluemix.net)
+- [Globalization Pipeline](https://console.ng.bluemix.net/docs/services/GlobalizationPipeline/index.html)
 
 ## Features
 
-You can create a new bundle right from the editor without having to use the Globalization Pipeline service's dashboard
+You can create a new bundle right from the editor without having to use the Globalization Pipeline service's dashboard.
 
 ![create bundle](images/create_bundle.png)
 
 You can upload your content from the editor as well and the extension will automatically get all your available bundles.
 
 ![upload bundle](images/upload_bundle.png) 
+
+## Install
+
+You can install the Globalization Pipeline extension by directly downloading the .vsix package and then from the command line do one of the following:
+
++ If you are using Bluemix Code, then run **bluemix-code g11n-0.0.1.vsix** 
+- If you are using Visual Studio Code, then run **code g11n-0.0.1.vsix**
 
 ## Requirements
 
@@ -27,7 +38,7 @@ This extension contributes the following settings:
 * `g11n.instanceId`: The Globalization Pipeline service instanceId
 * `g11n.url`: The Globalization Pipeline service url end point
 * `g11n.sourceLanguage`: The source language of the content that you will upload to the service, e.g. *en*, must be a valid BCP 47 language code. By default this value is set to *en*
-* `g11n.targetLanguages`: An array of target lanaguges that your bundle will be translated into, e.g., *['es', 'fr']*, must be valid BCP 47 lanaguge codes
+* `g11n.targetLanguages`: An array of target lanaguges that your bundle will be translated into, e.g., *['es', 'fr']*, must be valid BCP 47 language codes
 
 ## Usage
 
@@ -39,7 +50,13 @@ In the command palette `(F1)` type Globalization Pipeline you should see the fol
 
 When you use these commands a connection will automatically be made to the Globalization Pipeline service on IBM Bluemix to complete your requested action.
 When you upload your source bundle content the extension will automatically detect the file format and will perform any necessary transformation for you. 
-Currently only Java properties, JSON, and i18n AMD resource bundles are supported.
+Currently only Java properties, JSON, and i18n AMD resource bundles are supported. To upload a bundle content make sure the content is the active
+edit screen and then invoke the extension.
+
+## Accessing bundles
+
+The best way to access the bundles from your application is to use one of the Globalization Pipeline's programming language SDKs. 
+Many programming lanaguges such as: Java, Node.js, Angular, and Python are supported. You can find a complete list of the SDKs [here](https://github.com/IBM-Bluemix/gp-common)
 
 
 ## Release Notes
