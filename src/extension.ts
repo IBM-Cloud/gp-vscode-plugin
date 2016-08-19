@@ -198,7 +198,6 @@ class GlobalizationPipeline {
                         parsed[item.key.name] = item.value.value;
                     }
                 } catch (e) {
-                    console.log(e);
                     parsed = {};
                 }
             }
