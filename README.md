@@ -58,7 +58,6 @@ edit screen and then invoke the extension.
 The best way to access the bundles from your application is to use one of the Globalization Pipeline's programming language SDKs. 
 Many programming languages such as: Java, Node.js, Angular, and Python are supported. You can find a complete list of the SDKs [here](https://github.com/IBM-Bluemix/gp-common)
 
-
 ## Release Notes
 
 No additional release notes at this time.
@@ -66,3 +65,19 @@ No additional release notes at this time.
 ### 0.0.1
 
 Initial release of Globalization Pipeleine extension
+
+## License
+
+Apache 2.0. See [LICENSE.txt](LICENSE.txt)
+
+> Licensed under the Apache License, Version 2.0 (the "License");
+> you may not use this file except in compliance with the License.
+> You may obtain a copy of the License at
+> 
+> http://www.apache.org/licenses/LICENSE-2.0
+> 
+> Unless required by applicable law or agreed to in writing, software
+> distributed under the License is distributed on an "AS IS" BASIS,
+> WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+> See the License for the specific language governing permissions and
+> limitations under the License.
