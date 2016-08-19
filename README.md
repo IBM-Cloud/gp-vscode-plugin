@@ -50,13 +50,13 @@ In the command palette `(F1)` type Globalization Pipeline you should see the fol
 
 When you use these commands a connection will automatically be made to the Globalization Pipeline service on IBM Bluemix to complete your requested action.
 When you upload your source bundle content the extension will automatically detect the file format and will perform any necessary transformation for you. 
-Currently only Java properties, JSON, and i18n AMD resource bundles are supported. To upload a bundle content make sure the content is the active
+Currently only Java properties, JSON, and i18n AMD resource bundles are supported. To upload bundle content make sure the content is being displayed in the active
 edit screen and then invoke the extension.
 
 ## Accessing bundles
 
 The best way to access the bundles from your application is to use one of the Globalization Pipeline's programming language SDKs. 
-Many programming lanaguges such as: Java, Node.js, Angular, and Python are supported. You can find a complete list of the SDKs [here](https://github.com/IBM-Bluemix/gp-common)
+Many programming languages such as: Java, Node.js, Angular, and Python are supported. You can find a complete list of the SDKs [here](https://github.com/IBM-Bluemix/gp-common)
 
 
 ## Release Notes
