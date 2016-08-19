@@ -18,7 +18,7 @@ You can upload your content from the editor as well and the extension will autom
 
 ## Install
 
-You can install the Globalization Pipeline extension by directly downloading the .vsix package from the releases folder and then from the command line do one of the following:
+You can install the Globalization Pipeline extension by directly downloading the .vsix package from [releases](https://github.ibm.com/gp/gp-vscode-plugin/releases) and then from the command line do one of the following:
 
 + If you are using Bluemix Code, then run **bluemix-code g11n-0.0.1.vsix** 
 - If you are using Visual Studio Code, then run **code g11n-0.0.1.vsix**
