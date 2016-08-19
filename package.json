@@ -1,7 +1,7 @@
 {
     "name": "g11n",
     "displayName": "Globalization Pipeline Extension",
-    "description": "%description%",
+    "description": "Connect to the Globalization Pipeline service on Bluemix",
     "icon": "images/logo.svg",
     "version": "0.0.1",
     "publisher": "IBM",
@@ -52,7 +52,7 @@
                 "g11n.url": {
                     "type": "string",
                     "default": "",
-                    "description": "%url"
+                    "description": "%url%"
                 },
                 "g11n.sourceLanguage": {
                     "type": "string",

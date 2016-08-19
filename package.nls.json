@@ -1,6 +1,5 @@
 
 {
-    "description": "Connect to the Globalization Pipeline service on Bluemix",
     "create": "Globalization Pipeline - Create Bundle",
     "update": "Globalization Pipeline - Upload Source Bundle",
     "delete": "Globalization Pipeline - Delete Bundle",
