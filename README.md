@@ -1,6 +1,6 @@
 # Globalization Pipeline Extension README
 
-This extension enables you to quickly create, upload, and delete translation bundles in the Globalization Pipeline service on IBM Bluemix.
+This extension enables you to quickly create, upload, download, and delete translation bundles in the Globalization Pipeline service on IBM Bluemix.
 If you are unfamiliar with IBM Bluemix and the Globalization Pipeline service checkout these links:
 
 + [Bluemix](https://bluemix.net)
@@ -45,8 +45,9 @@ This extension contributes the following settings:
 In the command palette `(F1)` type Globalization Pipeline you should see the following commands:
 
 + Globalization Pipeline - Create Bundle
-- Globalization Pipeline - Upload Source Bundle
-* Globalization Pipeline - Delete Bundle
++ Globalization Pipeline - Delete Bundle
++ Globalization Pipeline - Download Bundle
++ Globalization Pipeline - Upload Source Bundle
 
 When you use these commands a connection will automatically be made to the Globalization Pipeline service on IBM Bluemix to complete your requested action.
 When you upload your source bundle content the extension will automatically detect the file format and will perform any necessary transformation for you. 
@@ -57,6 +58,7 @@ edit screen and then invoke the extension.
 
 The best way to access the bundles from your application is to use one of the Globalization Pipeline's programming language SDKs. 
 Many programming languages such as: Java, Node.js, Angular, and Python are supported. You can find a complete list of the SDKs [here](https://github.com/IBM-Bluemix/gp-common)
+You can also download a bundle in json format.
 
 ## Release Notes
 
@@ -65,6 +67,10 @@ No additional release notes at this time.
 ### 0.0.1
 
 Initial release of Globalization Pipeleine extension
+
+### 0.0.2
+
+Added downloading of bundles
 
 ## License
 

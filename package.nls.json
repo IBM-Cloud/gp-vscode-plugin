@@ -3,6 +3,7 @@
     "create": "Globalization Pipeline - Create Bundle",
     "update": "Globalization Pipeline - Upload Source Bundle",
     "delete": "Globalization Pipeline - Delete Bundle",
+    "download": "Globalization Pipeline - Download Bundle",
     "userid": "Service user id",
     "password": "Service password",
     "instanceid": "Service instance id",
