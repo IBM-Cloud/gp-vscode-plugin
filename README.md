@@ -12,16 +12,20 @@ You can create a new bundle right from the editor without having to use the Glob
 
 ![create bundle](images/create_bundle.png)
 
-You can upload your content from the editor as well and the extension will automatically get all your available bundles.
+You can upload your content from the editor and the extension will automatically get all your available bundles.
 
 ![upload bundle](images/upload_bundle.png) 
+
+You can download your bundles from the editor and then select the language that you want.
+
+![download bundle](images/download_bundle.png)
 
 ## Install
 
 You can install the Globalization Pipeline extension by directly downloading the .vsix package from [releases](https://github.ibm.com/gp/gp-vscode-plugin/releases) and then from the command line do one of the following:
 
-+ If you are using Bluemix Code, then run **bluemix-code g11n-0.0.2.vsix** 
-- If you are using Visual Studio Code, then run **code g11n-0.0.2.vsix**
++ If you are using Bluemix Code, then run **bluemix-code g11n-0.0.3.vsix** 
+- If you are using Visual Studio Code, then run **code g11n-0.0.3.vsix**
 
 ## Requirements
 
@@ -71,6 +75,10 @@ Initial release of Globalization Pipeleine extension
 ### 0.0.2
 
 Added downloading of bundles
+
+### 0.0.3
+
+Added pretty layout of resource bundle content
 
 ## License
 
