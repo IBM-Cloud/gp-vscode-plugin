@@ -25,18 +25,15 @@ import {
     window,
     workspace,
     commands,
-    Disposable,
     ExtensionContext,
-    StatusBarAlignment,
-    StatusBarItem,
-    TextDocument,
     Uri,
     env
 } from 'vscode';
 
-import * as vscode from 'vscode';
-
-let localize: any = nls.config({locale: env.language})(path.join(__dirname, 'data'));
+// Load the resource bundle for the language
+let localize: any = nls.config({
+    locale: env.language
+})(path.join(__dirname, 'data'));
 
 
 // This method is called when your extension is activated. Activation is
@@ -130,11 +127,9 @@ class Settings {
     get sourceLanguage(): string {
         return this._sourceLanguage;
     }
-}
+} // end Settings class
 
 class GlobalizationPipeline {
-    private fs = require('fs');
-
     private g11n;
     private _userSettings: Settings;
 
@@ -191,7 +186,7 @@ class GlobalizationPipeline {
                         raw: true
                     });
 
-                    // grab the define function
+                    // grab the define function out of the ast
                     let defines = ast.body.filter(function(node) {
                         return node.expression.callee.name === 'define';
                     })[0];
@@ -228,9 +223,7 @@ class GlobalizationPipeline {
                 window.showErrorMessage(localize(0, null));
                 return;
             } else {
-                var bundleList = Object.keys(bundles);
-
-                window.setStatusBarMessage(localize(2, null), 2000);
+                let bundleList = Object.keys(bundles);
 
                 window.showQuickPick(bundleList, {
                     placeHolder: localize(2, null)
@@ -245,11 +238,11 @@ class GlobalizationPipeline {
                                 } else if (results.status == "SUCCESS") {
                                     window.showInformationMessage(localize(4, null) + bundleName);
                                 }
-                            });
+                            }); // block end delete bundle in service
                     }
-                });
+                }); // block end show bundle list
             }
-        });
+        }); // block end getting bundle list from service
     }
 
     public downloadBundle() {
@@ -264,8 +257,6 @@ class GlobalizationPipeline {
             } else {
                 var bundleList = Object.keys(bundles);
 
-                window.setStatusBarMessage(localize(1, null), 2000);
-
                 window.showQuickPick(bundleList, {
                     placeHolder: localize(14, null)
                 }).then(bundleName => {
@@ -274,46 +265,47 @@ class GlobalizationPipeline {
                         return;
                     } else {
                         // get the list of target languages for the selected bundle
-                        _this.g11n.bundle(bundleName).getInfo({fields: "targetLanguages"}, function(err, langs) {
-                            if(err || langs.targetLanguages.length == 0) {
+                        _this.g11n.bundle(bundleName).getInfo({
+                            fields: "targetLanguages"
+                        }, function(err, langs) {
+                            if (err || langs.targetLanguages.length == 0) {
                                 window.showErrorMessage(localize(16, null));
                                 return;
                             }
                             // show the language list for this bundle
                             else {
-                                window.showQuickPick(langs.targetLanguages,{
+                                window.showQuickPick(langs.targetLanguages, {
                                     placeHolder: localize(15, null)
                                 }).then(language => {
                                     // Get the content for the selected bundle and language
-                                    if(typeof language !== "string") {
+                                    if (typeof language !== "string") {
                                         // a language was not selected
                                         return;
-                                    }
-                                    else {
-                                        _this.g11n.bundle(bundleName).getStrings({languageId: language}, 
-                                            function(err, results){
-                                            if(err) {
-                                                window.showErrorMessage(localize(16, null));
-                                                return;
-                                            }
-                                            else {
-                                                try {
-                                                    // Do the file write as synchronous
-                                                    // Create the file
-                                                    let fileName = bundleName + '_' + language + '.json';
-                                                    _this.fs.writeFileSync(fileName, JSON.stringify(results.resourceStrings));
-                                                    // Get the full path to the file
-                                                    let fullPath = _this.fs.realpathSync(fileName,[]);
-                                                    // Open the file in a new edit window
-                                                    let uri = Uri.parse('file://' + fullPath);
-                                                    commands.executeCommand('vscode.open', uri);
-                                                }
-                                                catch(e) {
-                                                    window.showErrorMessage(localize(17,null));
+                                    } else {
+                                        _this.g11n.bundle(bundleName).getStrings({
+                                                languageId: language
+                                            },
+                                            function(err, results) {
+                                                if (err) {
+                                                    window.showErrorMessage(localize(16, null));
                                                     return;
+                                                } else {
+                                                    try {
+                                                        let fs = require('fs');
+                                                        // Create the file using a synchronous call
+                                                        let fileName = bundleName + '_' + language + '.json';
+                                                        fs.writeFileSync(fileName, JSON.stringify(results.resourceStrings, null, 2));
+                                                        // Get the full path to the file
+                                                        let fullPath = fs.realpathSync(fileName, []);
+                                                        // Open the file in a new edit window
+                                                        let uri = Uri.parse('file://' + fullPath);
+                                                        commands.executeCommand('vscode.open', uri);
+                                                    } catch (e) {
+                                                        window.showErrorMessage(localize(17, null));
+                                                        return;
+                                                    }
                                                 }
-                                            }
-                                        }); // block end for getting the bundle strings
+                                            }); // block end for getting the bundle strings
                                     }
                                 }); // block end for showing the list of available languages
                             }
@@ -335,8 +327,6 @@ class GlobalizationPipeline {
             } else {
                 var bundleList = Object.keys(bundles);
 
-                window.setStatusBarMessage(localize(1, null), 2000);
-
                 window.showQuickPick(bundleList, {
                     placeHolder: localize(5, null)
                 }).then(bundleName => {
@@ -357,7 +347,7 @@ class GlobalizationPipeline {
                                 } else if (results.status == "SUCCESS") {
                                     window.showInformationMessage(localize(7, null) + bundleName);
                                 }
-                            });
+                            }); // block end uploading key value pairs to service
                         }
                         // no key value pairs to upload
                         else {
@@ -365,9 +355,9 @@ class GlobalizationPipeline {
                             return;
                         }
                     }
-                });
+                }); // block end showing the list of bundles
             }
-        });
+        }); // block end getting list of bundles from service
     }
 
 
@@ -376,8 +366,7 @@ class GlobalizationPipeline {
         window.showInputBox({
             prompt: localize(13, null),
             validateInput: text => {
-                //let regex = /\s/g;
-                let regex = /[a-zA-Z0-9][a-zA-Z0-9_.\\-]+/;
+                const regex = /[a-zA-Z0-9][a-zA-Z0-9_.\\-]+/;
                 return regex.test(text) ? '' : localize(9, null);
             }
         }).then(bundleName => {
@@ -397,13 +386,13 @@ class GlobalizationPipeline {
                     } else if (results.status == 'SUCCESS') {
                         window.showInformationMessage(localize(12, null) + bundleName);
                     }
-                });
+                }); // block end for creating bundle in service
             }
-        });
+        }); // block end for prompting for name of bundle to create
     }
 
-
+    // Place holder for any disposables that we might create
     dispose() {
 
     }
-}
+} // end Globalization class

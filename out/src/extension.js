@@ -20,7 +20,10 @@
 var nls = require('vscode-nls');
 var path = require('path');
 var vscode_1 = require('vscode');
-var localize = nls.config({ locale: vscode_1.env.language })(path.join(__dirname, 'data'));
+// Load the resource bundle for the language
+var localize = nls.config({
+    locale: vscode_1.env.language
+})(path.join(__dirname, 'data'));
 // This method is called when your extension is activated. Activation is
 // controlled by the activation events defined in package.json.
 function activate(context) {
@@ -103,10 +106,9 @@ var Settings = (function () {
         configurable: true
     });
     return Settings;
-}());
+}()); // end Settings class
 var GlobalizationPipeline = (function () {
     function GlobalizationPipeline() {
-        this.fs = require('fs');
         this._userSettings = getConfigurationSettings();
         var credentials = {
             credentials: {
@@ -156,7 +158,7 @@ var GlobalizationPipeline = (function () {
                         range: true,
                         raw: true
                     });
-                    // grab the define function
+                    // grab the define function out of the ast
                     var defines = ast.body.filter(function (node) {
                         return node.expression.callee.name === 'define';
                     })[0];
@@ -191,7 +193,6 @@ var GlobalizationPipeline = (function () {
             }
             else {
                 var bundleList = Object.keys(bundles);
-                vscode_1.window.setStatusBarMessage(localize(2, null), 2000);
                 vscode_1.window.showQuickPick(bundleList, {
                     placeHolder: localize(2, null)
                 }).then(function (bundleName) {
@@ -206,11 +207,11 @@ var GlobalizationPipeline = (function () {
                             else if (results.status == "SUCCESS") {
                                 vscode_1.window.showInformationMessage(localize(4, null) + bundleName);
                             }
-                        });
+                        }); // block end delete bundle in service
                     }
-                });
+                }); // block end show bundle list
             }
-        });
+        }); // block end getting bundle list from service
     };
     GlobalizationPipeline.prototype.downloadBundle = function () {
         // We need to do this so we can access the object from the lambda functions
@@ -223,7 +224,6 @@ var GlobalizationPipeline = (function () {
             }
             else {
                 var bundleList = Object.keys(bundles);
-                vscode_1.window.setStatusBarMessage(localize(1, null), 2000);
                 vscode_1.window.showQuickPick(bundleList, {
                     placeHolder: localize(14, null)
                 }).then(function (bundleName) {
@@ -233,7 +233,9 @@ var GlobalizationPipeline = (function () {
                     }
                     else {
                         // get the list of target languages for the selected bundle
-                        _this.g11n.bundle(bundleName).getInfo({ fields: "targetLanguages" }, function (err, langs) {
+                        _this.g11n.bundle(bundleName).getInfo({
+                            fields: "targetLanguages"
+                        }, function (err, langs) {
                             if (err || langs.targetLanguages.length == 0) {
                                 vscode_1.window.showErrorMessage(localize(16, null));
                                 return;
@@ -248,19 +250,21 @@ var GlobalizationPipeline = (function () {
                                         return;
                                     }
                                     else {
-                                        _this.g11n.bundle(bundleName).getStrings({ languageId: language }, function (err, results) {
+                                        _this.g11n.bundle(bundleName).getStrings({
+                                            languageId: language
+                                        }, function (err, results) {
                                             if (err) {
                                                 vscode_1.window.showErrorMessage(localize(16, null));
                                                 return;
                                             }
                                             else {
                                                 try {
-                                                    // Do the file write as synchronous
-                                                    // Create the file
+                                                    var fs = require('fs');
+                                                    // Create the file using a synchronous call
                                                     var fileName = bundleName + '_' + language + '.json';
-                                                    _this.fs.writeFileSync(fileName, JSON.stringify(results.resourceStrings));
+                                                    fs.writeFileSync(fileName, JSON.stringify(results.resourceStrings, null, 2));
                                                     // Get the full path to the file
-                                                    var fullPath = _this.fs.realpathSync(fileName, []);
+                                                    var fullPath = fs.realpathSync(fileName, []);
                                                     // Open the file in a new edit window
                                                     var uri = vscode_1.Uri.parse('file://' + fullPath);
                                                     vscode_1.commands.executeCommand('vscode.open', uri);
@@ -290,7 +294,6 @@ var GlobalizationPipeline = (function () {
             }
             else {
                 var bundleList = Object.keys(bundles);
-                vscode_1.window.setStatusBarMessage(localize(1, null), 2000);
                 vscode_1.window.showQuickPick(bundleList, {
                     placeHolder: localize(5, null)
                 }).then(function (bundleName) {
@@ -312,16 +315,16 @@ var GlobalizationPipeline = (function () {
                                 else if (results.status == "SUCCESS") {
                                     vscode_1.window.showInformationMessage(localize(7, null) + bundleName);
                                 }
-                            });
+                            }); // block end uploading key value pairs to service
                         }
                         else {
                             vscode_1.window.showErrorMessage(localize(8, null) + bundleName);
                             return;
                         }
                     }
-                });
+                }); // block end showing the list of bundles
             }
-        });
+        }); // block end getting list of bundles from service
     };
     GlobalizationPipeline.prototype.createBundle = function () {
         var _this = this;
@@ -329,7 +332,6 @@ var GlobalizationPipeline = (function () {
         vscode_1.window.showInputBox({
             prompt: localize(13, null),
             validateInput: function (text) {
-                //let regex = /\s/g;
                 var regex = /[a-zA-Z0-9][a-zA-Z0-9_.\\-]+/;
                 return regex.test(text) ? '' : localize(9, null);
             }
@@ -352,12 +354,13 @@ var GlobalizationPipeline = (function () {
                     else if (results.status == 'SUCCESS') {
                         vscode_1.window.showInformationMessage(localize(12, null) + bundleName);
                     }
-                });
+                }); // block end for creating bundle in service
             }
-        });
+        }); // block end for prompting for name of bundle to create
     };
+    // Place holder for any disposables that we might create
     GlobalizationPipeline.prototype.dispose = function () {
     };
     return GlobalizationPipeline;
-}());
+}()); // end Globalization class
 //# sourceMappingURL=extension.js.map
