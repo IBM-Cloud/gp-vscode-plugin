@@ -20,6 +20,7 @@
 
 import * as nls from 'vscode-nls';
 import * as path from 'path';
+
 import {
     window,
     workspace,
@@ -29,8 +30,12 @@ import {
     StatusBarAlignment,
     StatusBarItem,
     TextDocument,
+    Uri,
     env
 } from 'vscode';
+
+import * as vscode from 'vscode';
+
 let localize: any = nls.config({locale: env.language})(path.join(__dirname, 'data'));
 
 
@@ -50,6 +55,10 @@ export function activate(context: ExtensionContext) {
         g11n.uploadBundle();
     });
 
+    var downloadBundle = commands.registerCommand('extension.g11n.downloadBundle', () => {
+        g11n.downloadBundle();
+    });
+
     var deleteBundle = commands.registerCommand('extension.g11n.deleteBundle', () => {
         g11n.deleteBundle();
     });
@@ -58,7 +67,9 @@ export function activate(context: ExtensionContext) {
     context.subscriptions.push(g11n);
     context.subscriptions.push(createBundle);
     context.subscriptions.push(uploadBundle);
+    context.subscriptions.push(downloadBundle);
 }
+
 
 function getConfigurationSettings(): Settings {
     let settings = workspace.getConfiguration('g11n');
@@ -122,6 +133,8 @@ class Settings {
 }
 
 class GlobalizationPipeline {
+    private fs = require('fs');
+
     private g11n;
     private _userSettings: Settings;
 
@@ -237,6 +250,78 @@ class GlobalizationPipeline {
                 });
             }
         });
+    }
+
+    public downloadBundle() {
+        // We need to do this so we can access the object from the lambda functions
+        var _this = this;
+
+        // Display the list of bundles
+        this.g11n.bundles({}, function(err, bundles) {
+            if (err) {
+                window.showErrorMessage(localize(0, null));
+                return;
+            } else {
+                var bundleList = Object.keys(bundles);
+
+                window.setStatusBarMessage(localize(1, null), 2000);
+
+                window.showQuickPick(bundleList, {
+                    placeHolder: localize(14, null)
+                }).then(bundleName => {
+                    if (typeof bundleName !== "string") {
+                        // a bundle was not selected
+                        return;
+                    } else {
+                        // get the list of target languages for the selected bundle
+                        _this.g11n.bundle(bundleName).getInfo({fields: "targetLanguages"}, function(err, langs) {
+                            if(err || langs.targetLanguages.length == 0) {
+                                window.showErrorMessage(localize(16, null));
+                                return;
+                            }
+                            // show the language list for this bundle
+                            else {
+                                window.showQuickPick(langs.targetLanguages,{
+                                    placeHolder: localize(15, null)
+                                }).then(language => {
+                                    // Get the content for the selected bundle and language
+                                    if(typeof language !== "string") {
+                                        // a language was not selected
+                                        return;
+                                    }
+                                    else {
+                                        _this.g11n.bundle(bundleName).getStrings({languageId: language}, 
+                                            function(err, results){
+                                            if(err) {
+                                                window.showErrorMessage(localize(16, null));
+                                                return;
+                                            }
+                                            else {
+                                                try {
+                                                    // Do the file write as synchronous
+                                                    // Create the file
+                                                    let fileName = bundleName + '_' + language + '.json';
+                                                    _this.fs.writeFileSync(fileName, JSON.stringify(results.resourceStrings));
+                                                    // Get the full path to the file
+                                                    let fullPath = _this.fs.realpathSync(fileName,[]);
+                                                    // Open the file in a new edit window
+                                                    let uri = Uri.parse('file://' + fullPath);
+                                                    commands.executeCommand('vscode.open', uri);
+                                                }
+                                                catch(e) {
+                                                    window.showErrorMessage(localize(17,null));
+                                                    return;
+                                                }
+                                            }
+                                        }); // block end for getting the bundle strings
+                                    }
+                                }); // block end for showing the list of available languages
+                            }
+                        }); // block end for getting the list of translations for the bundle
+                    }
+                }); // block end for showing the list of available bundles
+            }
+        }); // block end for getting the list of available bundles from the service
     }
 
     public uploadBundle() {

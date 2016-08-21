@@ -33,6 +33,9 @@ function activate(context) {
     var uploadBundle = vscode_1.commands.registerCommand('extension.g11n.uploadBundle', function () {
         g11n.uploadBundle();
     });
+    var downloadBundle = vscode_1.commands.registerCommand('extension.g11n.downloadBundle', function () {
+        g11n.downloadBundle();
+    });
     var deleteBundle = vscode_1.commands.registerCommand('extension.g11n.deleteBundle', function () {
         g11n.deleteBundle();
     });
@@ -40,6 +43,7 @@ function activate(context) {
     context.subscriptions.push(g11n);
     context.subscriptions.push(createBundle);
     context.subscriptions.push(uploadBundle);
+    context.subscriptions.push(downloadBundle);
 }
 exports.activate = activate;
 function getConfigurationSettings() {
@@ -102,6 +106,7 @@ var Settings = (function () {
 }());
 var GlobalizationPipeline = (function () {
     function GlobalizationPipeline() {
+        this.fs = require('fs');
         this._userSettings = getConfigurationSettings();
         var credentials = {
             credentials: {
@@ -206,6 +211,74 @@ var GlobalizationPipeline = (function () {
                 });
             }
         });
+    };
+    GlobalizationPipeline.prototype.downloadBundle = function () {
+        // We need to do this so we can access the object from the lambda functions
+        var _this = this;
+        // Display the list of bundles
+        this.g11n.bundles({}, function (err, bundles) {
+            if (err) {
+                vscode_1.window.showErrorMessage(localize(0, null));
+                return;
+            }
+            else {
+                var bundleList = Object.keys(bundles);
+                vscode_1.window.setStatusBarMessage(localize(1, null), 2000);
+                vscode_1.window.showQuickPick(bundleList, {
+                    placeHolder: localize(14, null)
+                }).then(function (bundleName) {
+                    if (typeof bundleName !== "string") {
+                        // a bundle was not selected
+                        return;
+                    }
+                    else {
+                        // get the list of target languages for the selected bundle
+                        _this.g11n.bundle(bundleName).getInfo({ fields: "targetLanguages" }, function (err, langs) {
+                            if (err || langs.targetLanguages.length == 0) {
+                                vscode_1.window.showErrorMessage(localize(16, null));
+                                return;
+                            }
+                            else {
+                                vscode_1.window.showQuickPick(langs.targetLanguages, {
+                                    placeHolder: localize(15, null)
+                                }).then(function (language) {
+                                    // Get the content for the selected bundle and language
+                                    if (typeof language !== "string") {
+                                        // a language was not selected
+                                        return;
+                                    }
+                                    else {
+                                        _this.g11n.bundle(bundleName).getStrings({ languageId: language }, function (err, results) {
+                                            if (err) {
+                                                vscode_1.window.showErrorMessage(localize(16, null));
+                                                return;
+                                            }
+                                            else {
+                                                try {
+                                                    // Do the file write as synchronous
+                                                    // Create the file
+                                                    var fileName = bundleName + '_' + language + '.json';
+                                                    _this.fs.writeFileSync(fileName, JSON.stringify(results.resourceStrings));
+                                                    // Get the full path to the file
+                                                    var fullPath = _this.fs.realpathSync(fileName, []);
+                                                    // Open the file in a new edit window
+                                                    var uri = vscode_1.Uri.parse('file://' + fullPath);
+                                                    vscode_1.commands.executeCommand('vscode.open', uri);
+                                                }
+                                                catch (e) {
+                                                    vscode_1.window.showErrorMessage(localize(17, null));
+                                                    return;
+                                                }
+                                            }
+                                        }); // block end for getting the bundle strings
+                                    }
+                                }); // block end for showing the list of available languages
+                            }
+                        }); // block end for getting the list of translations for the bundle
+                    }
+                }); // block end for showing the list of available bundles
+            }
+        }); // block end for getting the list of available bundles from the service
     };
     GlobalizationPipeline.prototype.uploadBundle = function () {
         // We need to do this so we can access the object from the lambda functions

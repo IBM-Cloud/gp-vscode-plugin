@@ -3,7 +3,7 @@
     "displayName": "Globalization Pipeline Extension",
     "description": "Connect to the Globalization Pipeline service on Bluemix",
     "icon": "images/logo.svg",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "IBM",
     "license": "SEE LICENSE IN LICENSE.txt",
     "engines": {
@@ -15,6 +15,7 @@
     "activationEvents": [
         "onCommand:extension.g11n.createBundle",
         "onCommand:extension.g11n.uploadBundle",
+        "onCommand:extension.g11n.downloadBundle",
         "onCommand:extension.g11n.deleteBundle"
     ],
     "main": "./out/src/extension",
@@ -26,6 +27,10 @@
         {
             "command": "extension.g11n.uploadBundle",
             "title": "%update%"
+        },
+        {
+            "command": "extension.g11n.downloadBundle",
+            "title": "%download%"
         },
         {
             "command": "extension.g11n.deleteBundle",
