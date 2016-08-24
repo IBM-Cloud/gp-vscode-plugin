@@ -1,115 +1,120 @@
 {
-    "name": "g11n",
-    "displayName": "Globalization Pipeline Extension",
-    "description": "Connect to the Globalization Pipeline service on Bluemix",
-    "icon": "images/logo.svg",
-    "version": "0.0.3",
-    "publisher": "IBM",
-    "galleryBanner": {
-        "color": "#f2f2f2",
-        "theme": "light"
-    },
-    "license": "SEE LICENSE IN LICENSE.txt",
-    "bugs": {
-        "url": "https://github.ibm.com/gp/gp-vscode-plugin/issues",
-        "email": "atkin@us.ibm.com"
-    },
-    "homepage": "https://github.ibm.com/gp/gp-vscode-plugin/blob/master/README.md",
-    "repository": {
-        "type": "git",
-        "url": "https://github.ibm.com/gp/gp-vscode-plugin.git"
-    },
-    "engines": {
-        "vscode": "^1.0.0"
-    },
-    "keywords": [
-        "Globalization", "Bluemix", "Translation"
-    ],
-    "categories": [
-        "Other"
-    ],
-    "badges": [
-        {
-            "url": "https://github.ibm.com/gp/gp-vscode-plugin/blob/master/images/logo.svg",
-            "href": "https://github.ibm.com/gp/gp-vscode-plugin",
-            "description": "Globalization Pipeline Extension"
-        }
-    ],
-    "activationEvents": [
-        "onCommand:extension.g11n.createBundle",
-        "onCommand:extension.g11n.uploadBundle",
-        "onCommand:extension.g11n.downloadBundle",
-        "onCommand:extension.g11n.deleteBundle"
-    ],
-    "main": "./out/src/extension",
-    "contributes": {
-        "commands": [{
-            "command": "extension.g11n.createBundle",
-            "title": "%create%"
-        },
-        {
-            "command": "extension.g11n.uploadBundle",
-            "title": "%update%"
-        },
-        {
-            "command": "extension.g11n.downloadBundle",
-            "title": "%download%"
-        },
-        {
-            "command": "extension.g11n.deleteBundle",
-            "title": "%delete%"
-        }],
-        "configuration": {
-            "type": "object",
-            "title": "Globalization Pipeline Configuration",
-            "properties": {
-                "g11n.userId": {
-                    "type": "string",
-                    "default": "",
-                    "description": "%userid%"
-                },
-                "g11n.password": {
-                    "type": "string",
-                    "deafult": "",
-                    "description": "%password%"
-                },
-                "g11n.instanceId": {
-                    "type": "string",
-                    "default": "",
-                    "description": "%instanceid%"
-                },
-                "g11n.url": {
-                    "type": "string",
-                    "default": "",
-                    "description": "%url%"
-                },
-                "g11n.sourceLanguage": {
-                    "type": "string",
-                    "default": "en",
-                    "description": "%source%"
-                },
-                "g11n.targetLanguages": {
-                    "type": "array",
-                    "default": [],
-                    "description": "%target%"
-                }
-            }
-        }
-    },
-    "scripts": {
-        "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
-        "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
-        "preinstall": "cp data.nls.json ./out/src/data.nls.json",
-        "postinstall": "node ./node_modules/vscode/bin/install"
-    },
-    "devDependencies": {
-        "typescript": "^1.8.5",
-        "vscode": "^0.11.0"
-    },
-    "dependencies": {
-        "g11n-pipeline": "^1.2.0",
-        "properties-parser": "^0.3.1",
-        "esprima": "^2.7.2",
-        "vscode-nls": "1.0.7"
+  "name": "g11n",
+  "displayName": "Globalization Pipeline Extension",
+  "description": "Connect to the Globalization Pipeline service on Bluemix",
+  "icon": "images/logo.svg",
+  "version": "0.0.3",
+  "publisher": "IBM",
+  "galleryBanner": {
+    "color": "#f2f2f2",
+    "theme": "light"
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "bugs": {
+    "url": "https://github.ibm.com/gp/gp-vscode-plugin/issues",
+    "email": "atkin@us.ibm.com"
+  },
+  "homepage": "https://github.ibm.com/gp/gp-vscode-plugin/blob/master/README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.ibm.com/gp/gp-vscode-plugin.git"
+  },
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "keywords": [
+    "Globalization",
+    "Bluemix",
+    "Translation"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "badges": [
+    {
+      "url": "https://github.ibm.com/gp/gp-vscode-plugin/blob/master/images/logo.svg",
+      "href": "https://github.ibm.com/gp/gp-vscode-plugin",
+      "description": "Globalization Pipeline Extension"
     }
+  ],
+  "activationEvents": [
+    "onCommand:extension.g11n.createBundle",
+    "onCommand:extension.g11n.uploadBundle",
+    "onCommand:extension.g11n.downloadBundle",
+    "onCommand:extension.g11n.deleteBundle"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.g11n.createBundle",
+        "title": "%create%"
+      },
+      {
+        "command": "extension.g11n.uploadBundle",
+        "title": "%update%"
+      },
+      {
+        "command": "extension.g11n.downloadBundle",
+        "title": "%download%"
+      },
+      {
+        "command": "extension.g11n.deleteBundle",
+        "title": "%delete%"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Globalization Pipeline Configuration",
+      "properties": {
+        "g11n.userId": {
+          "type": "string",
+          "default": "",
+          "description": "%userid%"
+        },
+        "g11n.password": {
+          "type": "string",
+          "deafult": "",
+          "description": "%password%"
+        },
+        "g11n.instanceId": {
+          "type": "string",
+          "default": "",
+          "description": "%instanceid%"
+        },
+        "g11n.url": {
+          "type": "string",
+          "default": "",
+          "description": "%url%"
+        },
+        "g11n.sourceLanguage": {
+          "type": "string",
+          "default": "en",
+          "description": "%source%"
+        },
+        "g11n.targetLanguages": {
+          "type": "array",
+          "default": [],
+          "description": "%target%"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+    "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
+    "preinstall": "gulp",
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "typescript": "^1.8.5",
+    "vscode": "^0.11.0"
+  },
+  "dependencies": {
+    "g11n-pipeline": "^1.2.0",
+    "properties-parser": "^0.3.1",
+    "esprima": "^2.7.2",
+    "vscode-nls": "1.0.7"
+  }
 }
