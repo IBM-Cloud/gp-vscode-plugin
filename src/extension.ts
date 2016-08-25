@@ -160,23 +160,45 @@ class GlobalizationPipeline {
         if (!doc.isUntitled) {
             let docContent = doc.getText();
             let languageType = doc.languageId;
+            let fileExt = path.extname(doc.fileName).toLowerCase();
+
             // JSON resource bundle
-            if (languageType == "json") {
+            if (languageType == "json" && fileExt == ".json") {
                 try {
                     parsed = JSON.parse(docContent);
                 } catch (e) {
                     parsed = {};
                 }
             }
+            // getText pot file bundle
+            else if(languageType == "plaintext" && fileExt == ".pot") {
+                let po2json = require("po2json");
+                try {
+                    // parse the content and return as key value pairs
+                    let potData = po2json.parse(docContent, {format: 'mf'});
+                    /*
+                    * For .pot files we need to copy the keys over to the values
+                    * for each string in the file
+                    */
+                    for (let key in potData) {
+                        if (potData.hasOwnProperty(key)) {
+                            parsed[key] = key;
+                        }
+                    }
+                }
+                catch(e) {
+                    parsed = {};
+                }
+            }
             // Java properties bundle
-            else if (languageType == "ini") {
+            else if (languageType == "ini" && fileExt == ".properties") {
                 let props = require("properties-parser");
                 try {
                     parsed = props.parse(docContent);
                 } catch (e) {
                     parsed = {};
                 }
-            } else if (languageType == 'javascript') {
+            } else if (languageType == 'javascript' && fileExt == ".js") {
                 try {
                     let esprima = require('esprima');
 
