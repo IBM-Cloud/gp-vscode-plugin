@@ -16,5 +16,6 @@
     "Select a bundle to download",
     "Select a language",
     "Could not get list of lanaguges",
-    "Could not get bundle strings"
+    "Could not get bundle strings",
+    "You don't have permission to save the bundle in this location"
 ]

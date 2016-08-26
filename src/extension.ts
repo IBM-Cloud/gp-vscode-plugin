@@ -323,7 +323,12 @@ class GlobalizationPipeline {
                                                         let uri = Uri.parse('file://' + fullPath);
                                                         commands.executeCommand('vscode.open', uri);
                                                     } catch (e) {
-                                                        window.showErrorMessage(localize(17, null));
+                                                        if(e.code === 'EACCES') {
+                                                            window.showErrorMessage(localize(18, null));
+                                                        }
+                                                        else {
+                                                            window.showErrorMessage(localize(17, null));
+                                                        }
                                                         return;
                                                     }
                                                 }
