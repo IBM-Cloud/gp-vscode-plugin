@@ -3,16 +3,25 @@
   "displayName": "Globalization Pipeline Extension",
   "description": "Connect to the Globalization Pipeline service on Bluemix",
   "icon": "images/logo.svg",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "publisher": "IBM",
   "galleryBanner": {
     "color": "#f2f2f2",
     "theme": "light"
   },
+  "author": {
+    "name": "Steve Atkin",
+    "email": "atkin@us.ibm.com"
+  },
+  "contributors": [
+    {
+      "name": "Steven Loomis",
+      "email": "srloomis@us.ibm.com"
+    }
+  ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/IBM-Bluemix/gp-vscode-plugin/issues",
-    "email": "atkin@us.ibm.com"
+    "url": "https://github.com/IBM-Bluemix/gp-vscode-plugin/issues"
   },
   "homepage": "https://github.com/IBM-Bluemix/gp-vscode-plugin",
   "repository": {
@@ -23,6 +32,7 @@
     "vscode": "^1.0.0"
   },
   "keywords": [
+    "IBM",
     "Globalization",
     "Bluemix",
     "Translation"
