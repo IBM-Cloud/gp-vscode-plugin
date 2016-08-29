@@ -6,5 +6,5 @@ src/**
 **/*.map
 .gitignore
 tsconfig.json
-data.nls.json
 gulpfile.js
+!file.ts

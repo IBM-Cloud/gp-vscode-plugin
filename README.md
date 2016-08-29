@@ -24,7 +24,6 @@ You can download your bundles from the editor and then select the language that 
 
 You can install the Globalization Pipeline extension by directly downloading the .vsix package from [releases](https://github.com/IBM-Bluemix/gp-vscode-plugin/releases) and then from the command line do one of the following:
 
-+ If you are using Bluemix Code, then run **bluemix-code g11n-x.y.z.vsix** 
 - If you are using Visual Studio Code, then run **code g11n-x.y.z.vsix**
 
 ## Requirements
@@ -67,6 +66,10 @@ You can also download a bundle in json format.
 ## Release Notes
 
 No additional release notes at this time.
+
+### 0.0.6
+
+Updates for release
 
 ### 0.0.5
 
