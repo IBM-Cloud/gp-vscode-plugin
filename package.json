@@ -1,5 +1,5 @@
 {
-  "name": "g11n",
+  "name": "gp-vscode-plugin",
   "displayName": "Globalization Pipeline Extension",
   "description": "Connect to the Globalization Pipeline service on Bluemix",
   "icon": "images/logo.svg",
@@ -9,15 +9,15 @@
     "color": "#f2f2f2",
     "theme": "light"
   },
-  "license": "SEE LICENSE IN LICENSE.txt",
+  "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.ibm.com/gp/gp-vscode-plugin/issues",
+    "url": "https://github.com/IBM-Bluemix/gp-vscode-plugin/issues",
     "email": "atkin@us.ibm.com"
   },
-  "homepage": "https://github.ibm.com/gp/gp-vscode-plugin/blob/master/README.md",
+  "homepage": "https://github.com/IBM-Bluemix/gp-vscode-plugin",
   "repository": {
     "type": "git",
-    "url": "https://github.ibm.com/gp/gp-vscode-plugin.git"
+    "url": "https://github.com/IBM-Bluemix/gp-vscode-plugin.git"
   },
   "engines": {
     "vscode": "^1.0.0"
@@ -32,8 +32,8 @@
   ],
   "badges": [
     {
-      "url": "https://github.ibm.com/gp/gp-vscode-plugin/blob/master/images/logo.svg",
-      "href": "https://github.ibm.com/gp/gp-vscode-plugin",
+      "url": "https://github.com/IBM-Bluemix/gp-vscode-plugin/blob/master/images/logo.svg",
+      "href": "https://github.com/IBM-Bluemix/gp-vscode-plugin",
       "description": "Globalization Pipeline Extension"
     }
   ],
