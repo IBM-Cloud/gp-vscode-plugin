@@ -323,7 +323,6 @@ class GlobalizationPipeline {
                                                         // attempt to store the file in the current folder
                                                         try {
                                                             fs.writeFileSync(fileName, JSON.stringify(results.resourceStrings, null, 2));
-                                                            fs.writeFileSync(fileName, JSON.stringify(results.resourceStrings, null, 2));
                                                             // Get the full path to the file
                                                             let fullPath = fs.realpathSync(fileName, []);
                                                             // Open the file in a new edit window
