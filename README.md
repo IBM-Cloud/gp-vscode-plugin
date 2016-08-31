@@ -67,6 +67,10 @@ You can also download a bundle in json format.
 
 No additional release notes at this time.
 
+### 0.0.7
+
+Added support for downloading to temp home folder when the user does not have permission to write to the current folder
+
 ### 0.0.6
 
 Updates for release

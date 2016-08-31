@@ -27,7 +27,7 @@ import {
     commands,
     ExtensionContext,
     Uri,
-    env
+    env,
 } from 'vscode';
 
 // Load the resource bundle for the language
@@ -171,22 +171,23 @@ class GlobalizationPipeline {
                 }
             }
             // getText pot file bundle
-            else if(languageType == "plaintext" && fileExt == ".pot") {
+            else if (languageType == "plaintext" && fileExt == ".pot") {
                 let po2json = require("po2json");
                 try {
                     // parse the content and return as key value pairs
-                    let potData = po2json.parse(docContent, {format: 'mf'});
+                    let potData = po2json.parse(docContent, {
+                        format: 'mf'
+                    });
                     /*
-                    * For .pot files we need to copy the keys over to the values
-                    * for each string in the file
-                    */
+                     * For .pot files we need to copy the keys over to the values
+                     * for each string in the file
+                     */
                     for (let key in potData) {
                         if (potData.hasOwnProperty(key)) {
                             parsed[key] = key;
                         }
                     }
-                }
-                catch(e) {
+                } catch (e) {
                     parsed = {};
                 }
             }
@@ -315,18 +316,46 @@ class GlobalizationPipeline {
                                                     try {
                                                         let fs = require('fs');
                                                         // Create the file using a synchronous call
+
+                                                        // Get the base file name
                                                         let fileName = bundleName + '_' + language + '.json';
-                                                        fs.writeFileSync(fileName, JSON.stringify(results.resourceStrings, null, 2));
-                                                        // Get the full path to the file
-                                                        let fullPath = fs.realpathSync(fileName, []);
-                                                        // Open the file in a new edit window
-                                                        let uri = Uri.parse('file://' + fullPath);
-                                                        commands.executeCommand('vscode.open', uri);
-                                                    } catch (e) {
-                                                        if(e.code === 'EACCES') {
-                                                            window.showErrorMessage(localize(18, null));
+
+                                                        // attempt to store the file in the current folder
+                                                        try {
+                                                            fs.writeFileSync(fileName, JSON.stringify(results.resourceStrings, null, 2));
+                                                            fs.writeFileSync(fileName, JSON.stringify(results.resourceStrings, null, 2));
+                                                            // Get the full path to the file
+                                                            let fullPath = fs.realpathSync(fileName, []);
+                                                            // Open the file in a new edit window
+                                                            let uri = Uri.parse('file://' + fullPath);
+                                                            commands.executeCommand('vscode.open', uri);
                                                         }
-                                                        else {
+                                                        // No write permissions so use temp folder
+                                                        catch (err) {
+                                                            require('mktmpdir')(function(err, dir){
+                                                                try {
+                                                                    fileName = path.join(dir, fileName);
+                                                                    fs.writeFileSync(fileName, JSON.stringify(results.resourceStrings, null, 2));
+                                                                    let fullPath = fs.realpathSync(fileName, []);
+                                                                    // Open the file in a new edit window
+                                                                    let uri = Uri.parse('file://' + fullPath);
+                                                                    commands.executeCommand('vscode.open', uri);
+                                                                }
+                                                                catch(e) {
+                                                                    if (e.code === 'EACCES') {
+                                                                        window.showErrorMessage(localize(18, null));
+                                                                    } else {
+                                                                        window.showErrorMessage(localize(17, null));
+                                                                    }
+                                                                    return;
+                                                                }
+                                                            });
+                                                            
+                                                        }
+                                                    } catch (e) {
+                                                        if (e.code === 'EACCES') {
+                                                            window.showErrorMessage(localize(18, null));
+                                                        } else {
                                                             window.showErrorMessage(localize(17, null));
                                                         }
                                                         return;
