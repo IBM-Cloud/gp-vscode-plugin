@@ -192,7 +192,7 @@ class GlobalizationPipeline {
                 }
             }
             // Java properties bundle
-            else if (languageType == "ini" && fileExt == ".properties") {
+            else if (languageType == "properties" && fileExt == ".properties") {
                 let props = require("properties-parser");
                 try {
                     parsed = props.parse(docContent);
