@@ -1,140 +1,141 @@
 {
-  "name": "gp-vscode-plugin",
-  "displayName": "Globalization Pipeline Extension",
-  "description": "Connect to the Globalization Pipeline service on Bluemix",
-  "icon": "images/logo.svg",
-  "version": "0.0.7",
-  "publisher": "IBM",
-  "galleryBanner": {
-    "color": "#f2f2f2",
-    "theme": "light"
-  },
-  "author": {
-    "name": "Steve Atkin",
-    "email": "atkin@us.ibm.com"
-  },
-  "contributors": [
-    {
-      "name": "Steven Loomis",
-      "email": "srloomis@us.ibm.com"
+    "name": "gp-vscode-plugin",
+    "displayName": "Globalization Pipeline Extension",
+    "description": "Connect to the Globalization Pipeline service on Bluemix",
+    "icon": "images/logo.svg",
+    "version": "0.1.0",
+    "publisher": "IBM",
+    "galleryBanner": {
+        "color": "#f2f2f2",
+        "theme": "light"
     },
-    { "name": "Harpreet Chawla",
-      "email": "hchawla@us.ibm.com"
-    }
-  ],
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/IBM-Bluemix/gp-vscode-plugin/issues"
-  },
-  "homepage": "https://github.com/IBM-Bluemix/gp-vscode-plugin",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/IBM-Bluemix/gp-vscode-plugin.git"
-  },
-  "engines": {
-    "vscode": "^1.0.0"
-  },
-  "keywords": [
-    "IBM",
-    "Globalization",
-    "Bluemix",
-    "Translation"
-  ],
-  "categories": [
-    "Other"
-  ],
-  "badges": [
-    {
-      "url": "https://github.com/IBM-Bluemix/gp-vscode-plugin/blob/master/images/logo.svg",
-      "href": "https://github.com/IBM-Bluemix/gp-vscode-plugin",
-      "description": "Globalization Pipeline Extension"
-    }
-  ],
-  "activationEvents": [
-    "onCommand:extension.g11n.createBundle",
-    "onCommand:extension.g11n.uploadBundle",
-    "onCommand:extension.g11n.downloadBundle",
-    "onCommand:extension.g11n.deleteBundle"
-  ],
-  "main": "./out/src/extension",
-  "contributes": {
-    "commands": [
-      {
-        "command": "extension.g11n.createBundle",
-        "title": "%create%"
-      },
-      {
-        "command": "extension.g11n.uploadBundle",
-        "title": "%update%"
-      },
-      {
-        "command": "extension.g11n.downloadBundle",
-        "title": "%download%"
-      },
-      {
-        "command": "extension.g11n.deleteBundle",
-        "title": "%delete%"
-      }
-    ],
-    "configuration": {
-      "type": "object",
-      "title": "Globalization Pipeline Configuration",
-      "properties": {
-        "g11n.userId": {
-          "type": "string",
-          "default": "",
-          "description": "%userid%"
+    "author": {
+        "name": "Steve Atkin",
+        "email": "atkin@us.ibm.com"
+    },
+    "contributors": [
+        {
+            "name": "Steven Loomis",
+            "email": "srloomis@us.ibm.com"
         },
-        "g11n.password": {
-          "type": "string",
-          "deafult": "",
-          "description": "%password%"
-        },
-        "g11n.instanceId": {
-          "type": "string",
-          "default": "",
-          "description": "%instanceid%"
-        },
-        "g11n.url": {
-          "type": "string",
-          "default": "",
-          "description": "%url%"
-        },
-        "g11n.sourceLanguage": {
-          "type": "string",
-          "default": "en",
-          "description": "%source%"
-        },
-        "g11n.targetLanguages": {
-          "type": "array",
-          "default": [],
-          "description": "%target%"
+        {
+            "name": "Harpreet Chawla",
+            "email": "hchawla@us.ibm.com"
         }
-      }
+    ],
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/IBM-Bluemix/gp-vscode-plugin/issues"
+    },
+    "homepage": "https://github.com/IBM-Bluemix/gp-vscode-plugin",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/IBM-Bluemix/gp-vscode-plugin.git"
+    },
+    "engines": {
+        "vscode": "^1.0.0"
+    },
+    "keywords": [
+        "IBM",
+        "Globalization",
+        "Bluemix",
+        "Translation"
+    ],
+    "categories": [
+        "Other"
+    ],
+    "badges": [
+        {
+            "url": "https://github.com/IBM-Bluemix/gp-vscode-plugin/blob/master/images/logo.svg",
+            "href": "https://github.com/IBM-Bluemix/gp-vscode-plugin",
+            "description": "Globalization Pipeline Extension"
+        }
+    ],
+    "activationEvents": [
+        "onCommand:extension.g11n.createBundle",
+        "onCommand:extension.g11n.uploadBundle",
+        "onCommand:extension.g11n.downloadBundle",
+        "onCommand:extension.g11n.deleteBundle"
+    ],
+    "main": "./out/src/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.g11n.createBundle",
+                "title": "%create%"
+            },
+            {
+                "command": "extension.g11n.uploadBundle",
+                "title": "%update%"
+            },
+            {
+                "command": "extension.g11n.downloadBundle",
+                "title": "%download%"
+            },
+            {
+                "command": "extension.g11n.deleteBundle",
+                "title": "%delete%"
+            }
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "Globalization Pipeline Configuration",
+            "properties": {
+                "g11n.userId": {
+                    "type": "string",
+                    "default": "",
+                    "description": "%userid%"
+                },
+                "g11n.password": {
+                    "type": "string",
+                    "deafult": "",
+                    "description": "%password%"
+                },
+                "g11n.instanceId": {
+                    "type": "string",
+                    "default": "",
+                    "description": "%instanceid%"
+                },
+                "g11n.url": {
+                    "type": "string",
+                    "default": "",
+                    "description": "%url%"
+                },
+                "g11n.sourceLanguage": {
+                    "type": "string",
+                    "default": "en",
+                    "description": "%source%"
+                },
+                "g11n.targetLanguages": {
+                    "type": "array",
+                    "default": [],
+                    "description": "%target%"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "tsc -p ./",
+        "compile": "tsc -watch -p ./",
+        "preinstall": "gulp",
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
+    "devDependencies": {
+        "gulp": "^3.9.1",
+        "typescript": "^2.2.2",
+        "vscode": "^1.1.0",
+        "gulp-install": "^1.1.0",
+        "mocha": "^2.3.3",
+        "@types/node": "^6.0.40",
+        "@types/mocha": "^2.2.32"
+    },
+    "dependencies": {
+        "g11n-pipeline": "^1.2.0",
+        "properties-parser": "^0.3.1",
+        "esprima": "^2.7.2",
+        "vscode-nls": "1.0.7",
+        "po2json": "^0.4.2",
+        "mktmpdir": "^0.1.1",
+        "typescript-logging": "^0.3.1"
     }
-  },
-  "scripts": {
-    "vscode:prepublish": "tsc -p ./", 
-    "compile": "tsc -watch -p ./", 
-    "preinstall": "gulp",
-    "postinstall": "node ./node_modules/vscode/bin/install"
-  },
-  "devDependencies": {
-    "gulp": "^3.9.1",
-    "typescript": "^2.2.2",
-    "vscode": "^1.1.0",
-    "gulp-install": "^1.1.0",
-    "mocha": "^2.3.3",
-    "@types/node": "^6.0.40",
-    "@types/mocha": "^2.2.32"
-  },
-  "dependencies": {
-    "g11n-pipeline": "^1.2.0",
-    "properties-parser": "^0.3.1",
-    "esprima": "^2.7.2",
-    "vscode-nls": "1.0.7",
-    "po2json": "^0.4.2",
-    "mktmpdir": "^0.1.1",
-    "typescript-logging": "^0.3.1"
-  }
 }
