@@ -291,7 +291,12 @@ class GlobalizationPipeline {
                         _this.g11n.bundle(bundleName).getInfo({
                             fields: "targetLanguages"
                         }, function(err, langs) {
-                            if (err || langs.targetLanguages.length == 0) {
+                            if(typeof langs.targetLanguages === 'undefined'){
+                                var newTarget:string[]; 
+                                newTarget = ["en"]; 
+                                langs.targetLanguages = newTarget;
+                            }
+                            if (err) {
                                 window.showErrorMessage(localize(16, null));
                                 return;
                             }
