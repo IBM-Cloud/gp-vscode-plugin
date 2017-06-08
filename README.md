@@ -67,6 +67,14 @@ You can also download a bundle in json format.
 
 No additional release notes at this time.
 
+### 0.1.1
+
+Enhancement: If there are no target languages,the sourceLanguage will be available as download option.
+
+### 0.1.0
+
+Fixes for Upload bundle for JSON and Java properties file.
+
 ### 0.0.7
 
 Added support for downloading to temp home folder when the user does not have permission to write to the current folder
