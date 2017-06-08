@@ -33,7 +33,7 @@
         "url": "https://github.com/IBM-Bluemix/gp-vscode-plugin.git"
     },
     "engines": {
-        "vscode": "^1.0.0"
+        "vscode": "^1.3.0"
     },
     "keywords": [
         "IBM",
