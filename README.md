@@ -67,6 +67,9 @@ You can also download a bundle in json format.
 
 No additional release notes at this time.
 
+### 0.1.3
+Image URL's in README.md resolved to correct https URLs.
+
 ### 0.1.2
 Replace SVG logo with PNG
 
