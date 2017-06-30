@@ -3,7 +3,7 @@
     "displayName": "Globalization Pipeline Extension",
     "description": "Connect to the Globalization Pipeline service on Bluemix",
     "icon": "images/logo.png",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "publisher": "IBM",
     "galleryBanner": {
         "color": "#f2f2f2",
