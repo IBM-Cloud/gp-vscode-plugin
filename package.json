@@ -2,7 +2,7 @@
     "name": "gp-vscode-plugin",
     "displayName": "Globalization Pipeline Extension",
     "description": "Connect to the Globalization Pipeline service on Bluemix",
-    "icon": "images/logo.svg",
+    "icon": "images/logo.png",
     "version": "0.1.1",
     "publisher": "IBM",
     "galleryBanner": {
@@ -46,7 +46,7 @@
     ],
     "badges": [
         {
-            "url": "https://github.com/IBM-Bluemix/gp-vscode-plugin/blob/master/images/logo.svg",
+            "url": "https://github.com/IBM-Bluemix/gp-vscode-plugin/blob/master/images/logo.png",
             "href": "https://github.com/IBM-Bluemix/gp-vscode-plugin",
             "description": "Globalization Pipeline Extension"
         }
