@@ -10,15 +10,15 @@ If you are unfamiliar with IBM Bluemix and the Globalization Pipeline service ch
 
 You can create a new bundle right from the editor without having to use the Globalization Pipeline service's dashboard.
 
-![create bundle](https://github.com/IBM-Bluemix/gp-vscode-plugin/blob/master/images/create_bundle.png)
+![create bundle](https://cdn.rawgit.com/IBM-Bluemix/gp-vscode-plugin/b2c1c5aa/images/create_bundle.png)
 
 You can upload your content from the editor and the extension will automatically get all your available bundles.
 
-![upload bundle](https://github.com/IBM-Bluemix/gp-vscode-plugin/blob/master/images/upload_bundle.png) 
+![upload bundle](https://cdn.rawgit.com/IBM-Bluemix/gp-vscode-plugin/b2c1c5aa/images/upload_bundle.png) 
 
 You can download your bundles from the editor and then select the language that you want.
 
-![download bundle](https://github.com/IBM-Bluemix/gp-vscode-plugin/blob/master/images/download_bundle.png)
+![download bundle](https://cdn.rawgit.com/IBM-Bluemix/gp-vscode-plugin/b2c1c5aa/images/download_bundle.png)
 
 ## Install
 
