@@ -67,6 +67,9 @@ You can also download a bundle in json format.
 
 No additional release notes at this time.
 
+### 0.1.2
+Replace SVG logo with PNG
+
 ### 0.1.1
 
 Enhancement: If there are no target languages,the sourceLanguage will be available as download option.
